@@ -8,11 +8,23 @@ const TaskProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [tasks, setTasks] = useState<task[]>(testTasks);
   const [createTaskModalOpened, setCreateTaskModalOpened] = useState(false);
 
+  // const [currentTaskID, setCurrentTaskID] = useState<number>(10);
+  let currentTaskID = 10;
+
   useEffect(() => {
-    console.log(tasks);
+    currentTaskID = 10;
   }, []);
 
-  const saveTask = (task: task) => {};
+  const saveTask = (task: task) => {
+    // setCurrentTaskID(currentTaskID + 1);
+
+    let a = tasks;
+    task.id = currentTaskID;
+    a.push(task);
+    setTasks(a);
+
+    console.log(a);
+  };
 
   const updateTask = (task: task, id: number) => {};
 
@@ -28,7 +40,6 @@ const TaskProvider: React.FC<React.ReactNode> = ({ children }) => {
 
   const openCloseTaskCreate = () => {
     setCreateTaskModalOpened(!createTaskModalOpened);
-    console.log("aaa");
   };
 
   return (

@@ -1,6 +1,7 @@
+import { category } from "../types/category";
 import { task } from "../types/task";
 
-export const taskCategories: category[] = [
+export const testTaskCategories: category[] = [
   {
     id: 1,
     title: "Trabalho",
@@ -22,6 +23,55 @@ export const taskCategories: category[] = [
     secondaryColorHEX: "#942013",
     icon: "leisure_icon",
   },
+  {
+    id: 4,
+    title: "Saúde",
+    colorHEX: "#27ae60",
+    secondaryColorHEX: "#117a36",
+    icon: "health_icon",
+  },
+  {
+    id: 5,
+    title: "Compras",
+    colorHEX: "#f39c12",
+    secondaryColorHEX: "#c77f0e",
+    icon: "shopping_icon",
+  },
+  {
+    id: 6,
+    title: "Social",
+    colorHEX: "#e67e22",
+    secondaryColorHEX: "#a95416",
+    icon: "social_icon",
+  },
+  {
+    id: 7,
+    title: "Projetos Pessoais",
+    colorHEX: "#9b59b6",
+    secondaryColorHEX: "#692a70",
+    icon: "personal_projects_icon",
+  },
+  {
+    id: 8,
+    title: "Finanças",
+    colorHEX: "#34495e",
+    secondaryColorHEX: "#1e2a38",
+    icon: "finance_icon",
+  },
+  {
+    id: 9,
+    title: "Fitness",
+    colorHEX: "#c0392b",
+    secondaryColorHEX: "#7b1e17",
+    icon: "fitness_icon",
+  },
+  {
+    id: 10,
+    title: "Viagens",
+    colorHEX: "#16a085",
+    secondaryColorHEX: "#0e6657",
+    icon: "travel_icon",
+  },
 ];
 
 export const testTasks: task[] = [
@@ -30,7 +80,7 @@ export const testTasks: task[] = [
     title: "Fazer relatório mensal",
     description: "Preparar relatório de desempenho para a reunião mensal.",
     time: "2023-01-15T10:30:00",
-    taskCategory: taskCategories[0], // Trabalho
+    taskCategory: testTaskCategories[0], // Trabalho
     completed: false,
   },
   {
@@ -38,7 +88,7 @@ export const testTasks: task[] = [
     title: "Estudar programação",
     description: "Revisar conceitos de TypeScript e React.",
     time: "2023-01-16T14:00:00",
-    taskCategory: taskCategories[1], // Estudo
+    taskCategory: testTaskCategories[1], // Estudo
     completed: true,
   },
   {
@@ -46,7 +96,7 @@ export const testTasks: task[] = [
     title: "Passeio no parque",
     description: "Dar um passeio relaxante no parque da cidade.",
     time: "2023-01-17T16:45:00",
-    taskCategory: taskCategories[2], // Lazer
+    taskCategory: testTaskCategories[2], // Lazer
     completed: false,
   },
   {
@@ -55,7 +105,7 @@ export const testTasks: task[] = [
     description:
       "Participar da reunião de equipe para discutir projetos atuais.",
     time: "2023-01-18T09:00:00",
-    taskCategory: taskCategories[0], // associando a categoria "Trabalho"
+    taskCategory: testTaskCategories[0], // associando a categoria "Trabalho"
     completed: false,
   },
   {
@@ -63,7 +113,7 @@ export const testTasks: task[] = [
     title: "Ler livro recomendado",
     description: "Iniciar a leitura do livro recomendado pelo grupo de estudo.",
     time: "2023-01-19T19:30:00",
-    taskCategory: taskCategories[1], // associando a categoria "Estudo"
+    taskCategory: testTaskCategories[1], // associando a categoria "Estudo"
     completed: false,
   },
   {
@@ -71,7 +121,7 @@ export const testTasks: task[] = [
     title: "Assistir a um filme",
     description: "Assistir ao filme sugerido por um amigo.",
     time: "2023-01-20T20:15:00",
-    taskCategory: taskCategories[2], // associando a categoria "Lazer"
+    taskCategory: testTaskCategories[2], // associando a categoria "Lazer"
     completed: true,
   },
   {
@@ -79,7 +129,7 @@ export const testTasks: task[] = [
     title: "Atualizar currículo",
     description: "Adicionar novas experiências ao currículo profissional.",
     time: "2023-01-21T12:45:00",
-    taskCategory: taskCategories[0], // associando a categoria "Trabalho"
+    taskCategory: testTaskCategories[0], // associando a categoria "Trabalho"
     completed: false,
   },
   {
@@ -87,7 +137,7 @@ export const testTasks: task[] = [
     title: "Exercícios físicos",
     description: "Realizar uma sessão de exercícios físicos.",
     time: "2023-01-22T17:00:00",
-    taskCategory: taskCategories[2], // associando a categoria "Lazer"
+    taskCategory: testTaskCategories[2], // associando a categoria "Lazer"
     completed: true,
   },
   {
@@ -96,7 +146,7 @@ export const testTasks: task[] = [
     description:
       "Configurar o ambiente de desenvolvimento para o novo projeto.",
     time: "2023-01-23T11:30:00",
-    taskCategory: taskCategories[1], // associando a categoria "Estudo"
+    taskCategory: testTaskCategories[1], // associando a categoria "Estudo"
     completed: false,
   },
   {
@@ -104,7 +154,7 @@ export const testTasks: task[] = [
     title: "Comprar mantimentos",
     description: "Fazer compras para a semana no supermercado.",
     time: "2023-01-24T15:30:00",
-    taskCategory: taskCategories[2], // associando a categoria "Lazer"
+    taskCategory: testTaskCategories[2], // associando a categoria "Lazer"
     completed: true,
   },
 ];

@@ -1,9 +1,12 @@
+import { DateType } from "react-native-ui-datepicker";
+import { category } from "./category";
+
 export interface task {
   id: number;
   title: string;
   description: string;
-  time: string;
-  taskCategory: category;
+  time: DateType;
+  taskCategory: category | null;
   completed: boolean;
 }
 

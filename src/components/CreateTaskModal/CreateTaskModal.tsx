@@ -6,8 +6,10 @@ import { styles } from "./styles";
 import { colors } from "../../data/Colors";
 import Icon_Clock from "../../../assets/icons/clock";
 import Icon_Send from "../../../assets/icons/send";
+import Icon_Bookmark from "../../../assets/icons/bookmark";
+import { taskManagerProps } from "../CreateTaskManager/CreateTaskManager";
 
-const CreateTaskModal = (props: { setOpen: () => void }) => {
+const CreateTaskModal = (props: { taskManager: taskManagerProps }) => {
   const tasks = useContext(TaskContext);
 
   return (
@@ -29,12 +31,16 @@ const CreateTaskModal = (props: { setOpen: () => void }) => {
             placeholder="Task title..."
             placeholderTextColor={colors.gray}
             numberOfLines={1}
+            value={props.taskManager.title}
+            onChangeText={(val) => props.taskManager.setTitle(val)}
           ></TextInput>
           <TextInput
             style={styles.textInput}
             placeholder="Description"
             placeholderTextColor={colors.gray}
             numberOfLines={1}
+            value={props.taskManager.description}
+            onChangeText={(val) => props.taskManager.setDescription(val)}
           ></TextInput>
         </View>
 
@@ -42,18 +48,21 @@ const CreateTaskModal = (props: { setOpen: () => void }) => {
           <View style={styles.bottomLeftButtons}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => props.setOpen()}
+              onPress={() => props.taskManager.setDatePickerOpen(true)}
             >
               <Icon_Clock width={32} height={32} fill={colors.white} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Icon_Clock width={32} height={32} fill={colors.white} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Icon_Clock width={32} height={32} fill={colors.white} />
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => props.taskManager.setCategoryOpen(true)}
+            >
+              <Icon_Bookmark width={32} height={32} fill={colors.white} />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => props.taskManager.CreateTask()}
+          >
             <Icon_Send width={30} height={30} fill={colors.primaryColor} />
           </TouchableOpacity>
         </View>
