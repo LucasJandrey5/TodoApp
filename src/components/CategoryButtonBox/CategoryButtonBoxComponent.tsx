@@ -3,18 +3,18 @@ import React, { useContext } from "react";
 import { styles } from "./styles";
 import Icon_Calendar from "../../../assets/icons/calendar";
 import { category } from "../../types/category";
-import { taskManagerProps } from "../CreateTaskManager/CreateTaskManager";
+import { categoryProps } from "../ChooseCategory/ChooseCategoryModalComponent";
 
 const CategoryButtonBoxComponent = (props: {
   item: category;
-  taskManager: taskManagerProps;
+  categoryProps: categoryProps;
 }) => {
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={() => {
-        props.taskManager.setCategory(props.item.id);
-        props.taskManager.setCategoryOpen(false);
+        props.categoryProps.setCategory(props.item.id);
+        props.categoryProps.setCategoryOpen(false);
       }}
     >
       <View style={{ ...styles.IconBox, backgroundColor: props.item.colorHEX }}>

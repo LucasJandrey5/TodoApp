@@ -10,32 +10,30 @@ export const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   container: {
-    justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: colors.darkGray,
-    borderTopStartRadius: 20,
-    borderTopEndRadius: 20,
+    backgroundColor: colors.bg,
+    borderRadius: 15,
   },
   topBar: {
-    width: "90%",
-    paddingTop: 20,
-    paddingBottom: 10,
+    width: "95%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginVertical: 10,
   },
-  modalTitleText: {
-    color: colors.white,
+  topBarText: {
     fontSize: 18,
+    color: colors.white,
   },
-  closeButton: {
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+  topBarButton: {
+    padding: 10,
   },
-  closeText: {
-    color: colors.linkText,
-    textDecorationLine: "underline",
+  topBarIcon: {
+    padding: 5,
+    borderRadius: 10,
+    backgroundColor: colors.gray,
   },
+
   textInputBox: {
     width: "100%",
     alignItems: "center",
@@ -51,27 +49,43 @@ export const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 10,
   },
-  bottomButtons: {
+  atrLine: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     width: "90%",
-    marginTop: 10,
-    marginBottom: 20,
+    paddingVertical: 10,
+  },
+  atrLeft: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  atrText: {
+    color: colors.white,
+    fontSize: 16,
+    marginHorizontal: 10,
+  },
+  atrButton: {
+    flexDirection: "row",
+    alignItems: "center",
+
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 8,
+  },
+  atrButtonText: {
+    color: colors.white,
+    marginHorizontal: 10,
+  },
+  bottomLine: {
+    width: "90%",
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  bottomLeftButtons: {
-    flexDirection: "column",
-  },
-  button: {
+  deleteButton: {
+    paddingVertical: 20,
+
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 5,
-  },
-  categoryButtonBox: {
-    paddingVertical: 3,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: colors.white,
-    marginHorizontal: 10,
   },
 });

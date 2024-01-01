@@ -14,7 +14,7 @@ export type TaskContextType = {
   tasks: task[];
   createTaskModalOpened: boolean;
   saveTask: (task: task) => void;
-  updateTask: (task: task, id: number) => void;
+  updateTask: (task: task) => void;
   changeCompleteTask: (id: number) => void;
   deleteTask: (id: number) => void;
   openCloseTaskCreate: () => void;

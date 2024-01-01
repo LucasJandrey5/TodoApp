@@ -4,18 +4,27 @@ import DateTimePicker, { DateType } from "react-native-ui-datepicker";
 import Modal from "react-native-modal";
 import { colors } from "../../data/Colors";
 import { styles } from "./styles";
+import dayjs from "dayjs";
+
 import { taskManagerProps } from "../CreateTaskManager/CreateTaskManager";
 
-const DatePickerComponent = (props: { taskManager: taskManagerProps }) => {
-  const [value, setValue] = useState<DateType>();
+export type dateProps = {
+  date: DateType;
+  setDate: (date: DateType) => void;
+  datePickerOpen: boolean;
+  setDatePickerOpen: (open: boolean) => void;
+};
+
+const DatePickerComponent = (props: { dateProps: dateProps }) => {
+  const [value, setValue] = useState<DateType>(props.dateProps.date);
 
   const SaveDate = () => {
-    props.taskManager.setDate(value);
-    props.taskManager.setDatePickerOpen(false);
+    props.dateProps.setDate(value);
+    props.dateProps.setDatePickerOpen(false);
   };
 
   return (
-    <Modal style={styles.modal} isVisible={props.taskManager.datePickerOpen}>
+    <Modal style={styles.modal} isVisible={props.dateProps.datePickerOpen}>
       <View style={styles.container}>
         <DateTimePicker
           value={value}
@@ -42,7 +51,7 @@ const DatePickerComponent = (props: { taskManager: taskManagerProps }) => {
         <View style={styles.buttonsBox}>
           <TouchableOpacity
             style={styles.buttonCancel}
-            onPress={() => props.taskManager.setDatePickerOpen(false)}
+            onPress={() => props.dateProps.setDatePickerOpen(false)}
           >
             <Text style={styles.buttonCancelText}>Cancel</Text>
           </TouchableOpacity>

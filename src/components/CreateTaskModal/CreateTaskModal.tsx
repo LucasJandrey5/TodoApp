@@ -8,9 +8,28 @@ import Icon_Clock from "../../../assets/icons/clock";
 import Icon_Send from "../../../assets/icons/send";
 import Icon_Bookmark from "../../../assets/icons/bookmark";
 import { taskManagerProps } from "../CreateTaskManager/CreateTaskManager";
+import { CategoryContext } from "../../Context/categoryContext";
+import { dateProps } from "../DatePicker/DatePickerComponents";
+import { categoryProps } from "../ChooseCategory/ChooseCategoryModalComponent";
 
-const CreateTaskModal = (props: { taskManager: taskManagerProps }) => {
+const CreateTaskModal = (props: {
+  taskManager: taskManagerProps;
+  dateProps: dateProps;
+  categoryProps: categoryProps;
+}) => {
+  const categories = useContext(CategoryContext);
   const tasks = useContext(TaskContext);
+
+  useEffect(() => {
+    ResetParameters();
+  }, []);
+
+  const ResetParameters = () => {
+    props.taskManager.setTitle("");
+    props.taskManager.setDescription("");
+    props.dateProps.setDate("");
+    props.categoryProps.setCategory(0);
+  };
 
   return (
     <Modal style={styles.modal} isVisible={tasks?.createTaskModalOpened}>
@@ -27,9 +46,16 @@ const CreateTaskModal = (props: { taskManager: taskManagerProps }) => {
 
         <View style={styles.textInputBox}>
           <TextInput
-            style={styles.textInput}
-            placeholder="Task title..."
-            placeholderTextColor={colors.gray}
+            style={{
+              ...styles.textInput,
+              borderColor: props.taskManager.titleEmpty
+                ? colors.error
+                : colors.gray,
+            }}
+            placeholder="Title"
+            placeholderTextColor={
+              props.taskManager.titleEmpty ? colors.error : colors.gray
+            }
             numberOfLines={1}
             value={props.taskManager.title}
             onChangeText={(val) => props.taskManager.setTitle(val)}
@@ -48,15 +74,43 @@ const CreateTaskModal = (props: { taskManager: taskManagerProps }) => {
           <View style={styles.bottomLeftButtons}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => props.taskManager.setDatePickerOpen(true)}
+              onPress={() => props.dateProps.setDatePickerOpen(true)}
             >
               <Icon_Clock width={32} height={32} fill={colors.white} />
+              <Text style={styles.buttonText}>
+                {props.dateProps.date == ""
+                  ? "Selecione a data"
+                  : props.dateProps.date?.toString()}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => props.taskManager.setCategoryOpen(true)}
+              onPress={() => props.categoryProps.setCategoryOpen(true)}
             >
               <Icon_Bookmark width={32} height={32} fill={colors.white} />
+              <View
+                style={{
+                  backgroundColor: categories?.categories.find(
+                    (item) => item.id == props.categoryProps.category
+                  )?.colorHEX,
+                  ...styles.categoryButtonBox,
+                }}
+              >
+                <Text
+                  style={{
+                    ...styles.buttonText,
+                    color: props.categoryProps.categoryEmpty
+                      ? colors.error
+                      : colors.white,
+                  }}
+                >
+                  {props.categoryProps.category == 0
+                    ? "Select category"
+                    : categories?.categories.find(
+                        (item) => item.id == props.categoryProps.category
+                      )?.title}
+                </Text>
+              </View>
             </TouchableOpacity>
           </View>
           <TouchableOpacity

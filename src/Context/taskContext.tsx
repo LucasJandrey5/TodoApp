@@ -1,32 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { TaskContextType, task } from "../types/task";
 import { testTasks } from "../data/testData";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const TaskContext = React.createContext<TaskContextType | null>(null);
 
 const TaskProvider: React.FC<React.ReactNode> = ({ children }) => {
-  const [tasks, setTasks] = useState<task[]>(testTasks);
+  const [tasks, setTasks] = useState<task[]>([]);
   const [createTaskModalOpened, setCreateTaskModalOpened] = useState(false);
 
-  // const [currentTaskID, setCurrentTaskID] = useState<number>(10);
-  let currentTaskID = 10;
+  const [storageDataObtained, setStorageDataObtained] = useState(false);
+
+  let currentTaskID = tasks.length;
 
   useEffect(() => {
-    currentTaskID = 10;
+    getStorageData();
   }, []);
 
+  useEffect(() => {
+    if (storageDataObtained) SaveData();
+
+    setStorageDataObtained(true);
+  }, [JSON.stringify(tasks)]);
+
   const saveTask = (task: task) => {
-    // setCurrentTaskID(currentTaskID + 1);
+    do {
+      currentTaskID += 1;
+    } while (tasks.find((item) => item.id == currentTaskID) != undefined);
 
     let a = tasks;
     task.id = currentTaskID;
     a.push(task);
-    setTasks(a);
 
-    console.log(a);
+    setTasks(a);
   };
 
-  const updateTask = (task: task, id: number) => {};
+  const updateTask = async (task: task) => {
+    let a = tasks.filter((e) => e.id != task.id);
+    a.push(task);
+    setTasks(a);
+  };
 
   const changeCompleteTask = (id: number) => {
     let index = tasks.findIndex((e) => e.id == id);
@@ -36,10 +49,34 @@ const TaskProvider: React.FC<React.ReactNode> = ({ children }) => {
     setTasks(b);
   };
 
-  const deleteTask = (id: number) => {};
+  const deleteTask = (id: number) => {
+    let a = tasks.filter((item) => item.id != id);
+    setTasks(a);
+  };
 
   const openCloseTaskCreate = () => {
     setCreateTaskModalOpened(!createTaskModalOpened);
+  };
+
+  const SaveData = async () => {
+    try {
+      const tasksJson = JSON.stringify(tasks);
+      await AsyncStorage.setItem("tasks", tasksJson);
+    } catch (e) {
+      console.warn(e);
+    }
+  };
+
+  const getStorageData = async () => {
+    let a = await AsyncStorage.getItem("currentTaskID");
+    currentTaskID = a == null ? 0 : parseInt(a);
+    let jsonStorageTasks = await AsyncStorage.getItem("tasks");
+    setTasks(JSON.parse(jsonStorageTasks == null ? "[]" : jsonStorageTasks));
+  };
+
+  const APAGAR_RemoveAllTasks = async () => {
+    const tasksJson = JSON.stringify([]);
+    await AsyncStorage.setItem("tasks", tasksJson);
   };
 
   return (

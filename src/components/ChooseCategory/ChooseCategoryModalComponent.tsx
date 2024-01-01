@@ -7,13 +7,21 @@ import { CategoryContext } from "../../Context/categoryContext";
 import CategoryButtonBoxComponent from "../CategoryButtonBox/CategoryButtonBoxComponent";
 import { taskManagerProps } from "../CreateTaskManager/CreateTaskManager";
 
+export type categoryProps = {
+  category: number;
+  setCategory: (id: number) => void;
+  categoryOpen: boolean;
+  setCategoryOpen: (open: boolean) => void;
+  categoryEmpty: boolean;
+};
+
 const ChooseCategoryModalComponent = (props: {
-  taskManager: taskManagerProps;
+  categoryProps: categoryProps;
 }) => {
   const categories = useContext(CategoryContext);
 
   return (
-    <Modal style={styles.modal} isVisible={props.taskManager.categoryOpen}>
+    <Modal style={styles.modal} isVisible={props.categoryProps.categoryOpen}>
       <View style={styles.container}>
         <Text style={styles.titleText}>Choose Category</Text>
         <View style={styles.lineBreak} />
@@ -22,7 +30,7 @@ const ChooseCategoryModalComponent = (props: {
             <CategoryButtonBoxComponent
               key={id}
               item={item}
-              taskManager={props.taskManager}
+              categoryProps={props.categoryProps}
             />
           ))}
         </View>
@@ -30,7 +38,7 @@ const ChooseCategoryModalComponent = (props: {
         <View style={styles.buttonsBox}>
           <TouchableOpacity
             style={styles.buttonCancel}
-            onPress={() => props.taskManager.setDatePickerOpen(false)}
+            onPress={() => props.categoryProps.setCategoryOpen(false)}
           >
             <Text style={styles.buttonCancelText}>Cancel</Text>
           </TouchableOpacity>
