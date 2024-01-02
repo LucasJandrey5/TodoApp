@@ -18,10 +18,18 @@ import Icon_Clock from "../../assets/icons/clock";
 import Icon_Profile from "../../assets/icons/profile";
 import CreateTaskScreen from "../pages/CreateTask/CreateTaskScreen";
 import { TaskContext } from "../Context/taskContext";
+import { createStackNavigator } from "@react-navigation/stack";
+import IntroScreen from "../pages/Intro/IntroScreen";
+import RegisterScreen from "../pages/Register/RegisterScreen";
+import LoginScreen from "../pages/Login/LoginScreen";
+import { UserContext } from "../Context/UserContext";
 
 const Router = () => {
   const BottomTab = createBottomTabNavigator();
+  const Stack = createStackNavigator();
   const tasks = useContext(TaskContext);
+
+  const user = useContext(UserContext);
 
   const iconSize = 28;
   const textSize = 12;
@@ -77,9 +85,8 @@ const Router = () => {
     </TouchableOpacity>
   );
 
-  return (
-    <NavigationContainer>
-      <StatusBar backgroundColor={colors.bg} animated={true} />
+  const AppNavigation = () => {
+    return (
       <BottomTab.Navigator
         screenOptions={{
           tabBarShowLabel: false,
@@ -166,6 +173,28 @@ const Router = () => {
           }}
         />
       </BottomTab.Navigator>
+    );
+  };
+
+  const LoginNavigation = () => {
+    return (
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="intro" component={IntroScreen} />
+        <Stack.Screen name="register" component={RegisterScreen} />
+        <Stack.Screen name="login" component={LoginScreen} />
+      </Stack.Navigator>
+    );
+  };
+
+  return (
+    <NavigationContainer>
+      <StatusBar backgroundColor={colors.bg} animated={true} />
+
+      {user?.user == null ? <LoginNavigation /> : <AppNavigation />}
     </NavigationContainer>
   );
 };

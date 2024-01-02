@@ -11,5 +11,6 @@ export const styles = StyleSheet.create({
   },
   completedText: {
     fontSize: 18,
+    color: colors.lightGray,
   },
 });

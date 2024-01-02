@@ -5,7 +5,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const TaskContext = React.createContext<TaskContextType | null>(null);
 
-const TaskProvider: React.FC<React.ReactNode> = ({ children }) => {
+const TaskProvider: React.FC<React.ReactNode> = ({
+  children,
+}: {
+  children: React.JSX.Element;
+}) => {
   const [tasks, setTasks] = useState<task[]>([]);
   const [createTaskModalOpened, setCreateTaskModalOpened] = useState(false);
 

@@ -1,12 +1,13 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { styles } from "./styles";
-import Icon_Calendar from "../../../assets/icons/calendar";
 import { colors } from "../../data/Colors";
 import Icon_Filter from "../../../assets/icons/filter";
 
 const HomeTopBarComponent = () => {
+  const navigate = useNavigation();
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.filterBox}>
@@ -15,7 +16,11 @@ const HomeTopBarComponent = () => {
 
       <Text style={styles.text}>Tasks</Text>
 
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigate.navigate("menu");
+        }}
+      >
         <Image
           style={styles.image}
           resizeMode="contain"
