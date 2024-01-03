@@ -12,14 +12,14 @@ const LoginScreen = () => {
 
   const user = useContext(UserContext);
 
-  const [email, setEmail] = useState<string>("Teste@gmail.com");
+  const [email, setEmail] = useState<string>("admin@gmail.com");
   const [emailError, setEmailError] = useState<boolean>(false);
   const [password, setPassword] = useState<string>("1234");
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (validateEmail()) {
-      const res = user?.SignInWithEmail({ email, password });
-      // CONTINUAR DAQUI - FAZER ARQUIVO .PHP PARA LOGIN
+      const res = await user?.SignInWithEmail({ email, password });
+      console.log(res);
     } else {
       setEmailError(true);
       showToast("Email inválido!");

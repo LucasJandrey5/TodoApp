@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import { TaskContextType, task } from "../types/task";
 import { testTasks } from "../data/testData";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SaveTask } from "../services/task";
 
 export const TaskContext = React.createContext<TaskContextType | null>(null);
 
-const TaskProvider: React.FC<React.ReactNode> = ({
-  children,
-}: {
-  children: React.JSX.Element;
-}) => {
+const TaskProvider = ({ children }: { children: React.JSX.Element }) => {
   const [tasks, setTasks] = useState<task[]>([]);
   const [createTaskModalOpened, setCreateTaskModalOpened] = useState(false);
 
@@ -37,6 +34,8 @@ const TaskProvider: React.FC<React.ReactNode> = ({
     a.push(task);
 
     setTasks(a);
+
+    SaveTask(task);
   };
 
   const updateTask = async (task: task) => {

@@ -1,4 +1,10 @@
-import { View, Text, TouchableOpacity, ToastAndroid } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ToastAndroid,
+  Vibration,
+} from "react-native";
 import React, { useContext, useState } from "react";
 import { styles } from "./styles";
 import { TextInput } from "react-native-gesture-handler";
@@ -28,21 +34,23 @@ const RegisterScreen = () => {
 
       const res = await user?.RegisterWithEmail(data);
 
-      console.log(res?.success);
-
       if (res?.success) {
         user?.SignInWithEmail({ email, password });
       } else {
         if (res?.message == "Email already exist!") {
           setEmailError(true);
           showToast(res.message);
+          Vibration.vibrate(300);
         } else {
           showToast("Ocorreu um erro! Tente novamente!");
+          console.log(res?.message);
+          Vibration.vibrate(300);
         }
       }
     } else {
       setEmailError(true);
       showToast("Email inválido!");
+      Vibration.vibrate(300);
     }
   };
 

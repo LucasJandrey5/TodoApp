@@ -24,24 +24,30 @@ export const styles = StyleSheet.create({
   },
   buttonBox: {
     flex: 1,
+    width: "70%",
+    alignItems: "center",
   },
   signinButton: {
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.primaryColor,
     padding: 20,
     marginBottom: 20,
+    borderRadius: 10,
   },
   signinButtonText: {
     fontSize: 16,
     color: colors.white,
   },
   registerButton: {
+    width: "100%",
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
     borderWidth: 1,
     borderColor: colors.primaryColor,
+    borderRadius: 10,
   },
   registerButtonText: {
     fontSize: 16,

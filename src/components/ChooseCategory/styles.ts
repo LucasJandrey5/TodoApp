@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
     color: colors.white,
     fontWeight: "500",
     fontSize: 18,
+    marginTop: 10,
   },
   lineBreak: {
     width: "80%",
@@ -32,6 +33,7 @@ export const styles = StyleSheet.create({
   },
   categoriesBox: {
     maxWidth: "90%",
+
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",

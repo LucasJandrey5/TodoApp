@@ -6,8 +6,8 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: 70,
-    marginHorizontal: 10,
-    marginVertical: 10,
+    marginHorizontal: 20,
+    marginVertical: 5,
   },
   IconBox: {
     alignItems: "center",

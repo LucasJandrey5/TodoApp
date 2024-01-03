@@ -7,7 +7,7 @@ export const RegisterUser = async (data: {
 }) => {
   const res = await ServerAPI({
     endPoint: "/user/createUser.php",
-    httpType: httpType.POST,
+    http: httpType.POST,
     data: data,
   });
 
@@ -16,8 +16,8 @@ export const RegisterUser = async (data: {
 
 export const SignIn = async (data: { email: string; password: string }) => {
   const res = await ServerAPI({
-    endPoint: "/user/SignIn.php",
-    httpType: httpType.GET,
+    endPoint: "/user/login.php",
+    http: httpType.GET,
     data: data,
   });
 

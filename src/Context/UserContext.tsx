@@ -10,6 +10,10 @@ const UserProvider = ({ children }: { children: React.JSX.Element }) => {
 
   const SignInWithEmail = async (data: { email: string; password: string }) => {
     const res = await SignIn(data);
+
+    if (res.success) {
+      setUser(res.user);
+    }
     return res;
   };
 

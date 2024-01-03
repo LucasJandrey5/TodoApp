@@ -1,14 +1,15 @@
 import axios, { Axios } from "axios";
 import React from "react";
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 export enum httpType {
-  GET,
-  POST,
+  GET = "get",
+  POST = "post",
 }
 
 const ServerAPI = async (props: {
   endPoint: string;
-  httpType: httpType;
+  http: httpType;
   data: object;
 }) => {
   const url =
@@ -17,28 +18,10 @@ const ServerAPI = async (props: {
 
   const api = axios.create();
 
-  // api.interceptors.request.use(
-  //   (request) => {
-  //     console.log("Starting Request: ", request.data);
-  //     return request;
-  //   },
-  //   (error) => {
-  //     return Promise.reject(error);
-  //   }
-  // );
-
-  // api.interceptors.response.use(
-  //   (response) => {
-  //     console.log("Response Body:", response.data);
-  //     return response;
-  //   },
-  //   (error) => {
-  //     return Promise.reject(error);
-  //   }
-  // );
-
   const response = api
-    .post(url, props.data)
+    .patch(url, props.data, {
+      httpAgent: props.http,
+    })
     .then((res) => {
       return res.data;
     })
